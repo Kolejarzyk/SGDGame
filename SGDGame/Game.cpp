@@ -1,5 +1,11 @@
 #include "Game.h"
+#include "TextureManager.h"
+#include "GameObject.h"
+#include "Map.h"
 
+GameObject* bugPlayer;
+Map* map;
+SDL_Renderer* Game::renderer = nullptr;
 Game::Game()
 {}
 Game::~Game()
@@ -34,6 +40,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}
+
+	bugPlayer = new GameObject("Assets/Untitled.png", 0, 0);
+	map = new Map();
 }
 
 void Game::handleEvents()
@@ -51,14 +60,16 @@ void Game::handleEvents()
 }
 void Game::update()
 {
-	cnt++;
-	std::cout << cnt << std::endl;
+	bugPlayer->Update();
 }
 
 void Game::render()
 {
 	SDL_RenderClear(renderer);
+	map->DrawMap();
+	bugPlayer->Render();
 	SDL_RenderPresent(renderer);
+
 
 }
 

@@ -8,6 +8,9 @@ public:
 	~GameObject();
 	void Update();
 	void Render();
+	void left();
+	void right();
+	void jump();
 private:
 	int xpos;
 	int ypos;

@@ -41,7 +41,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}
 
-	bugPlayer = new GameObject("Assets/Untitled.png", 0, 0);
+	bugPlayer = new GameObject("Assets/ladybird.png", 320, 449);
 	map = new Map();
 }
 
@@ -53,6 +53,14 @@ void Game::handleEvents()
 	{
 	case SDL_QUIT:
 		isRunning = false;
+		break;
+	case SDL_KEYDOWN:
+		switch (event.key.keysym.sym)
+		{
+		case SDLK_LEFT:  bugPlayer->left(); break;
+		case SDLK_RIGHT: bugPlayer->right(); break;
+		case SDLK_UP:    bugPlayer->jump(); break;
+		}
 		break;
 	default:
 		break;

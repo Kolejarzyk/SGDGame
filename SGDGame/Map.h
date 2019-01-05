@@ -13,7 +13,7 @@ private:
 	SDL_Texture*  field;
 	SDL_Texture*  berm;
 	SDL_Texture*  cobweb;
-
+	SDL_Texture*  sky;
 	int map[20][25];
 
 };

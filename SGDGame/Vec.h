@@ -25,7 +25,7 @@ public:
 	Vec& operator*=(const Vec& vec);
 	Vec& operator/=(const Vec& vec);
 
-	Vec& operator*(const int& i);
+	Vec& operator*(const float& i);
 	Vec& Zero();
 
 	friend std::ostream& operator<<(std::ostream& stream, const Vec& vec);

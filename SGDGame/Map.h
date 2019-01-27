@@ -8,12 +8,11 @@ public:
 
 	void LoadMap(int arr[20][25]);
 	void DrawMap();
-	bool checkCollision(SDL_Rect entity);
 private:
 	SDL_Rect src, dest;
 	SDL_Texture*  field;
 	SDL_Texture*  berm;
-	SDL_Texture*  cobweb;
+	SDL_Texture*  cloud;
 	SDL_Texture*  sky;
 	int map[20][25];
 

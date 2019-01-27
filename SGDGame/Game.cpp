@@ -12,6 +12,7 @@ GameObject* bird;
 Feather* feather;
 Enemy* enemy;
 Enemy* enemy1;
+Enemy* enemy2;
 Map* map;
 SDL_Renderer* Game::renderer = nullptr;
 Game::Game()
@@ -53,13 +54,17 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	feather = new Feather("Assets/feather.png", 450, 449);
 	enemy = new Enemy("Assets/enemy.png", 110, 449, 0.5f);
 	map = new Map();
-	enemy1 = new Enemy("Assets/enemy.png", 110, 123, 0.5f);
+	enemy1 = new Enemy("Assets/enemy.png", 110, 123, 0.1f);
+	enemy2 = new Enemy("Assets/enemy.png", 110, 240, 0.03f);
 	
 	
 }
 
 void Game::handleEvents()
 {
+	const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+
+
 	SDL_Event event;
 	SDL_PollEvent(&event);
 	switch (event.type)
@@ -68,13 +73,27 @@ void Game::handleEvents()
 		isRunning = false;
 		break;
 	case SDL_KEYDOWN:
-		switch (event.key.keysym.sym)
+		if (keyboardState[SDL_SCANCODE_LEFT])
 		{
-		case SDLK_LEFT:  bird->left(); break;
-		case SDLK_RIGHT: bird->right(); break;
-		case SDLK_UP:    bird->jump(); break;
+			bird->left();
+		}
+		if (keyboardState[SDL_SCANCODE_RIGHT])
+		{
+			bird->right();
+		}
+		if (keyboardState[SDL_SCANCODE_UP])
+		{
+			bird->jump();
 		}
 		break;
+
+		//switch (event.key.keysym.sym)
+	//	{
+	//	case SDLK_LEFT:  bird->left(); break;
+	//	case SDLK_RIGHT: bird->right(); break;
+//case SDLK_UP:    bird->jump(); break;
+	//	}
+	//	break;
 	default:	
 			bird ->none();
 	    break;
@@ -87,6 +106,7 @@ void Game::update()
 	feather->Update();
 	enemy->Update();
 	enemy1->Update();
+	enemy2->Update();
 	if(bird->check_collision(bird->get(), feather->get()))
 	{
 		cnt += 1;
@@ -104,6 +124,7 @@ void Game::update()
 		feather = new Feather("Assets/feather.png", 450, 449);
 		enemy = new Enemy("Assets/enemy.png", 110, 449, 0.1f);
 		enemy1 = new Enemy("Assets/enemy.png", 110, 123, 0.5f);
+		enemy2 = new Enemy("Assets/enemy.png", 110, 240, 0.03f);
 		map = new Map();
 		cnt = 0;
 		
@@ -115,17 +136,23 @@ void Game::update()
 		feather = new Feather("Assets/feather.png", 450, 449);
 		enemy = new Enemy("Assets/enemy.png", 110, 449,0.1f);
 		enemy1 = new Enemy("Assets/enemy.png", 110, 123,0.5f);
+		enemy2 = new Enemy("Assets/enemy.png", 110, 240, 0.03f);
 		map = new Map();
 		cnt = 0;
 
 	}
 
-	if (map->checkCollision(bird->get()))
+	if (bird->check_collision(bird->get(), enemy2->get()))
 	{
-		printf("It's work");
-	}
-	
+		bird = new GameObject("Assets/bird.png", 320, 449);
+		feather = new Feather("Assets/feather.png", 450, 449);
+		enemy = new Enemy("Assets/enemy.png", 110, 449, 0.1f);
+		enemy1 = new Enemy("Assets/enemy.png", 110, 123, 0.5f);
+		enemy2 = new Enemy("Assets/enemy.png", 110, 240, 0.03f);
+		map = new Map();
+		cnt = 0;
 
+	}
 	
 }
 
@@ -152,6 +179,7 @@ void Game::render()
 	feather->Render();
 	enemy->Render();
 	enemy1->Render();
+	enemy2->Render();
 	SDL_RenderPresent(renderer);
 
 

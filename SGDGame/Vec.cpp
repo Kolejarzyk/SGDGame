@@ -83,7 +83,7 @@ Vec& Vec::operator/=(const Vec& vec)
 	return this->Divide(vec);
 }
 
-Vec& Vec::operator*(const int& i)
+Vec& Vec::operator*(const float& i)
 {
 	this->x *= i;
 	this->y *= i;

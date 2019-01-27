@@ -13,7 +13,6 @@ public:
 	bool check_collision(SDL_Rect aPlayer, SDL_Rect oneAsteroid);
 	SDL_Rect  get();
 private:
-	const int jumpHeight = 10;
 	Vec position;
 	Vec velocity;
 	Vec gravity;

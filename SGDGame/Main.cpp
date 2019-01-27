@@ -21,18 +21,18 @@ int main(int argc, char *argv[])
 	{
 	
 		frameStart = SDL_GetTicks();
-		frameTime = SDL_GetTicks() - frameStart;
-		if (frameTime < DELAY_TIME)
-		{
-			SDL_Delay((int)(DELAY_TIME - frameTime));
-		}
+		
 		
 
 		game->handleEvents();
 		game->update();
 		game->render();
 
-		
+		frameTime = SDL_GetTicks() - frameStart;
+		if (frameTime < DELAY_TIME)
+		{
+			SDL_Delay((int)(DELAY_TIME - frameTime));
+		}
 	}
 
 	game->clean();

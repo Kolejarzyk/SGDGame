@@ -15,12 +15,12 @@ GameObject::~GameObject()
 void GameObject::Update()
 {
 	velocity.Add(Vec(0, 0.5f));
-	
+	position += velocity;
 	srcRect.h = 32;
 	srcRect.w = 32;
 	srcRect.x = 0;
 	srcRect.y = 0;
-	position += velocity;
+	
 	if (position.y > 449)
 	{
 		position.y = 449;
@@ -43,9 +43,9 @@ void GameObject::Update()
 void GameObject::left()
 {
 	objTexture = TextureManager::LoadTexture("Assets/birdleft.png");
-	while (velocity.x >= -3)
+	while (velocity.x >= -6.0f)
 	{	
-		velocity = velocity + Vec(-0.5f , 0) ;		
+		velocity = velocity + Vec(-1.0f , 0);		
 	}
 	position = position + velocity;
 	
@@ -54,9 +54,9 @@ void GameObject::left()
 void GameObject::right()
 {
 	objTexture = TextureManager::LoadTexture("Assets/bird.png");
-	while (velocity.x <= 3)
+	while (velocity.x <= 6.0f)
 	{
-		velocity = velocity + Vec(0.5f , 0);
+		velocity = velocity + Vec(1.0f , 0);
 	}
 	position = position + velocity;
 
@@ -88,7 +88,7 @@ void GameObject::none()
 		velocity.x = 0;
 	}
 	
-	position = position + velocity * Vec(dt, dt);;
+	position = position + velocity;
 	destRect.x = position.x;
 }
 

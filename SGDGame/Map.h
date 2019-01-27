@@ -8,6 +8,7 @@ public:
 
 	void LoadMap(int arr[20][25]);
 	void DrawMap();
+	bool checkCollision(SDL_Rect entity);
 private:
 	SDL_Rect src, dest;
 	SDL_Texture*  field;

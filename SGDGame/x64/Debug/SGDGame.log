@@ -1,2 +1,6 @@
 ﻿  GameObject.cpp
+c:\dev\sgdgame\sgdgame\gameobject.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\dev\sgdgame\sgdgame\gameobject.cpp(38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\dev\sgdgame\sgdgame\gameobject.cpp(39): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\dev\sgdgame\sgdgame\gameobject.cpp(95): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   SGDGame.vcxproj -> C:\Dev\SGDGame\x64\Debug\SGDGame.exe

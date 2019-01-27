@@ -13,12 +13,12 @@ int lvl1[20][25] = {
 { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
 { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
 { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
+{ 3,3,3,3,3,3,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
 { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
 { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
+{ 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,3,3,3,3,3,3 },
 { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
-{ 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
-{ 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3 },
-{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
@@ -67,6 +67,7 @@ void Map::DrawMap()
 				break;
 			case 1:
 				TextureManager::Draw(berm, src, dest);
+				//checkCollision();
 				break;
 			case 2:
 				TextureManager::Draw(cobweb, src, dest);
@@ -79,4 +80,52 @@ void Map::DrawMap()
 			}
 		}
 	}
+}
+
+
+bool Map::checkCollision(SDL_Rect entity)
+{
+	//The sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	//Calculate the sides of rect A
+	leftA = entity.x;
+	rightA = entity.x + entity.w;
+	topA = entity.y;
+	bottomA = entity.y + entity.h;
+
+				leftB = dest.x;
+				rightB = dest.x + dest.w;
+				topB = dest.y;
+				bottomB = dest.y + dest.h;
+				if (bottomA <= topB)
+				{
+					return  false;
+				}
+
+				if (topA >= bottomB)
+				{
+					return false;
+				}
+
+				if (rightA <= leftB)
+				{
+					return  false;
+				}
+
+				if (leftA >= rightB)
+				{
+					return  false;
+				}
+
+				return true;
+			
+			
+		
+		
+	
+
 }
